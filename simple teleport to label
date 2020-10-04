@@ -1,3 +1,5 @@
+{$CLEO .cs}
+
 //-------------MAIN---------------
 03A4: name_thread 'teleport' 
 
