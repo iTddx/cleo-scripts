@@ -1,0 +1,46 @@
+{$CLEO .cs}
+
+//-------------MAIN---------------
+0662: printstring "SYSTEMAIN.3DN.RU" 
+03A4: name_thread "$PLAYER.DEFINED($PLAYER_CHAR)" 
+
+:$PLAYER.DEFINED($PLAYER_CHAR)_53
+0001: wait 0 ms 
+00D6: if 
+0256:   player $PLAYER_CHAR defined 
+004D: jump_if_false @$PLAYER.DEFINED($PLAYER_CHAR)_53 
+00D6: if 
+00DF:   actor $PLAYER_ACTOR driving 
+004D: jump_if_false @$PLAYER.DEFINED($PLAYER_CHAR)_53 
+
+:$PLAYER.DEFINED($PLAYER_CHAR)_89
+0001: wait 100 ms 
+00D6: if 
+00DF:   actor $PLAYER_ACTOR driving 
+004D: jump_if_false @$PLAYER.DEFINED($PLAYER_CHAR)_89 
+03C0: 2@ = actor $PLAYER_ACTOR car 
+00BC: show_text_highpriority GXT 'CHEAT1' time 2000 flag 1  // Cheat activated
+018C: play_sound 1085 at 0.0 0.0 0.0 
+0002: jump @$PLAYER.DEFINED($PLAYER_CHAR)_160 
+
+:$PLAYER.DEFINED($PLAYER_CHAR)_160
+0001: wait 0 ms 
+053F: set_car 2@ tires_vulnerability 0 
+02AB: set_actor $PLAYER_ACTOR immunities BP 1 FP 1 EP 1 CP 1 MP 1 
+08C6: set_actor $PLAYER_ACTOR stay_on_bike 1 
+03F5: set_car 2@ apply_damage_rules 0 
+00D6: if or
+0118:   actor $PLAYER_ACTOR dead 
+80DB:   not actor $PLAYER_ACTOR in_car 2@ 
+80DF:   not actor $PLAYER_ACTOR driving 
+856E:   not car 2@ defined 
+004D: jump_if_false @$PLAYER.DEFINED($PLAYER_CHAR)_160 
+02AB: set_actor $PLAYER_ACTOR immunities BP 0 FP 0 EP 0 CP 0 MP 0 
+053F: set_car 2@ tires_vulnerability 1 
+08C6: set_actor $PLAYER_ACTOR stay_on_bike 0 
+03F5: set_car 2@ apply_damage_rules 1 
+0001: wait 10 ms 
+01C3: remove_references_to_car 2@ 
+00BC: show_text_highpriority GXT 'CHEAT8' time 2000 flag 1  // Cheat deactivated
+018C: play_sound 1084 at 0.0 0.0 0.0 
+0002: jump @$PLAYER.DEFINED($PLAYER_CHAR)_53
