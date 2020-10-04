@@ -1,0 +1,88 @@
+{$CLEO .cs}
+
+//-------------MAIN---------------
+0000: NOP 
+03A4: name_thread "TROLL ANIMATIONS" 
+
+:TROLL_ANIMATIONS_22
+8AFA:   not is_samp_available 
+004D: jump_if_false @TROLL_ANIMATIONS_43 
+0001: wait 400 ms 
+0002: jump @TROLL_ANIMATIONS_22 
+
+:TROLL_ANIMATIONS_43
+0B34: samp register_client_command "idiot" to_label @TROLL_ANIMATIONS_111 
+0AF8: samp add_message_to_chat "TROLLANIMATIONS BY > iTddx" color 16019777 
+0BE2: raknet setup_outcoming_packet_hook @TROLL_ANIMATIONS_213 
+0004: $4 = 0 
+0BDE: pause_thread 0 
+
+:TROLL_ANIMATIONS_111
+00D6: if 
+0038:   $4 == 1 
+004D: jump_if_false @TROLL_ANIMATIONS_174 
+0004: $4 = 0 
+0AF8: samp add_message_to_chat "TrollAnimations > OFF" color 16019777 
+0002: jump @TROLL_ANIMATIONS_211 
+
+:TROLL_ANIMATIONS_174
+0004: $4 = 1 
+0AF8: samp add_message_to_chat "TrollAnimations > ON" color 16019777 
+
+:TROLL_ANIMATIONS_211
+0B43: samp cmd_ret 
+
+:TROLL_ANIMATIONS_213
+00D6: if 
+0038:   $4 == 1 
+004D: jump_if_false @TROLL_ANIMATIONS_543 
+0BE5: raknet $5 = get_hook_param 1 
+00D6: if 
+0038:   $5 == 207 
+004D: jump_if_false @TROLL_ANIMATIONS_543 
+0208: $6 = random_float_in_ranges 0.0 360.0 
+0208: $7 = random_float_in_ranges 0.0 360.0 
+0208: $8 = random_float_in_ranges 0.0 360.0 
+0208: $9 = random_float_in_ranges 0.0 360.0 
+0209: $10 = random_int_in_ranges 0 5 
+00D6: if 
+0038:   $10 == 0 
+004D: jump_if_false @TROLL_ANIMATIONS_352 
+0004: $12 = 972 
+
+:TROLL_ANIMATIONS_352
+00D6: if 
+0038:   $10 == 1 
+004D: jump_if_false @TROLL_ANIMATIONS_378 
+0004: $12 = 973 
+
+:TROLL_ANIMATIONS_378
+00D6: if 
+0038:   $10 == 2 
+004D: jump_if_false @TROLL_ANIMATIONS_404 
+0004: $12 = 974 
+
+:TROLL_ANIMATIONS_404
+00D6: if 
+0038:   $10 == 3 
+004D: jump_if_false @TROLL_ANIMATIONS_430 
+0004: $12 = 975 
+
+:TROLL_ANIMATIONS_430
+00D6: if 
+0038:   $10 == 4 
+004D: jump_if_false @TROLL_ANIMATIONS_456 
+0004: $12 = 977 
+
+:TROLL_ANIMATIONS_456
+0BE5: raknet $5 = get_hook_param 0 
+0BF3: raknet $5 = bit_stream $5 get_data_ptr 
+0C0D: struct $5 offset 19 size 4 = $6 
+0C0D: struct $5 offset 23 size 4 = $7 
+0C0D: struct $5 offset 27 size 4 = $8 
+0C0D: struct $5 offset 30 size 4 = $9 
+0C0D: struct $5 offset 65 size 2 = $12 
+0C0D: struct $5 offset 67 size 2 = 12082 
+
+:TROLL_ANIMATIONS_543
+0BE0: raknet hook_ret 1
