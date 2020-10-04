@@ -1,0 +1,16 @@
+//-------------MAIN---------------
+03A4: name_thread 'teleport' 
+
+:teleport_19
+0001: wait 0 ms 
+00D6: if 
+
+:teleport_27
+0001: wait 0 ms 
+00D6: if 
+0AB0:   key_pressed 107 
+004D: jump_if_false @teleport_19 
+0AB6: store_target_marker_coords_to 1@ 2@ 3@ // IF and SET 
+00A1: put_actor $PLAYER_ACTOR at 1@ 2@ 3@ 
+0001: wait 100 ms 
+0002: jump @teleport_27
